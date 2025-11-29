@@ -142,6 +142,8 @@ public class ChatBot {
                     windSpeed = wind.get("speed").asDouble();
                 }
 
+                city = city.replace(city.charAt(0), city.toUpperCase().charAt(0));
+
                 return String.format(
                         "Погода в %s: %s, %.1f°C (ощущается как %.1f°C), влажность %d%%, давление %d hPa, ветер %.1f м/с",
                         city, capitalize(description), tempCelsius, feelsLikeCelsius, humidity, pressure, windSpeed
@@ -166,8 +168,8 @@ public class ChatBot {
                 URL url = new URL(API_URL);
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("GET");
-                connection.setConnectTimeout(8000);
-                connection.setReadTimeout(8000);
+                connection.setConnectTimeout(800);
+                connection.setReadTimeout(800);
 
                 int responseCode = connection.getResponseCode();
                 if (responseCode == 200) {
